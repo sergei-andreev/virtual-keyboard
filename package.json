@@ -5,8 +5,14 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint ."
   },
+  "eslintIgnore": [
+    "node_modules/",
+    "build/",
+    "dist/"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +23,10 @@
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-compat": "^4.1.4",
+    "eslint-plugin-import": "^2.27.5",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
