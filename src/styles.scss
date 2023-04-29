@@ -99,7 +99,7 @@ body {
     justify-content: center;
     width: 50px;
     height: 50px;
-    border: 4px solid #393939;
+    border: 3px solid #393939;
     border-radius: $border-radius;
     font-size: 24px;
     font-family: 'VT323', monospace;
@@ -107,6 +107,12 @@ body {
     background: #3F3F3F;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+
+    &_active {
+      background: #F77D4F;
+      color: #FFFFFF;
+      border-color: #F77D4F;
+    }
 
     &:hover {
       background: #F77D4F;
