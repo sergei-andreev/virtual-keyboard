@@ -83,6 +83,10 @@ const removeCharacters = () => {
   const start = $textarea.selectionStart;
   const end = $textarea.selectionEnd;
 
+  if (start === 0 && end === 0) {
+    return;
+  }
+
   if (start === 0 && end === $textarea.value.length) {
     $textarea.value = '';
     return;
@@ -240,3 +244,6 @@ $keyboard.addEventListener('click', (e) => {
     }
   }
 });
+
+const $note = createEl('div', ['note'], 'You can change the language by pressing the left Meta + left Shift');
+$container.append($note);
