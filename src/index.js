@@ -72,6 +72,13 @@ const changeCase = () => {
   });
 };
 
+const addCharacter = (key) => {
+  const start = $textarea.selectionStart;
+  const end = $textarea.selectionEnd;
+  $textarea.value = $textarea.value.slice(0, start) + key + $textarea.value.slice(end);
+  $textarea.selectionEnd = start + 1;
+};
+
 const removeCharacters = () => {
   const start = $textarea.selectionStart;
   const end = $textarea.selectionEnd;
@@ -80,8 +87,6 @@ const removeCharacters = () => {
     $textarea.value = '';
     return;
   }
-
-  if (start === 0) return;
 
   if (start === end) {
     $textarea.value = $textarea.value.slice(0, start - 1) + $textarea.value.slice(end);
@@ -102,8 +107,6 @@ const removeNextCharacters = () => {
     return;
   }
 
-  if (end === $textarea.value.length) return;
-
   if (start === end) {
     $textarea.value = $textarea.value.slice(0, start) + $textarea.value.slice(end + 1);
     $textarea.selectionEnd = start;
@@ -120,28 +123,28 @@ const doSpecialKey = (key) => {
       removeCharacters();
       break;
     case 'Tab':
-      $textarea.value += '    ';
+      addCharacter('    ');
       break;
     case 'Enter':
-      $textarea.value += '\n';
+      addCharacter('\n');
       break;
     case 'Space':
-      $textarea.value += ' ';
+      addCharacter(' ');
       break;
     case 'Delete':
       removeNextCharacters();
       break;
     case 'ArrowUp':
-      $textarea.value += '↑';
+      addCharacter('↑');
       break;
     case 'ArrowDown':
-      $textarea.value += '↓';
+      addCharacter('↓');
       break;
     case 'ArrowLeft':
-      $textarea.value += '←';
+      addCharacter('←');
       break;
     case 'ArrowRight':
-      $textarea.value += '→';
+      addCharacter('→');
       break;
     default:
       break;
@@ -163,11 +166,11 @@ window.addEventListener('keydown', (e) => {
   }
 
   if (state.isUpper) {
-    $textarea.value += $key.dataset[`${state.currentLang}Shift`];
+    addCharacter($key.dataset[`${state.currentLang}Shift`]);
     return;
   }
 
-  $textarea.value += $key.dataset[state.currentLang];
+  addCharacter($key.dataset[state.currentLang]);
 });
 
 window.addEventListener('keyup', (e) => {
@@ -205,11 +208,11 @@ $keyboard.addEventListener('mousedown', (e) => {
     }
 
     if (state.isUpper) {
-      $textarea.value += $key.dataset[`${state.currentLang}Shift`];
+      addCharacter($key.dataset[`${state.currentLang}Shift`]);
       return;
     }
 
-    $textarea.value += $key.dataset[state.currentLang];
+    addCharacter($key.dataset[state.currentLang]);
   }
 });
 
