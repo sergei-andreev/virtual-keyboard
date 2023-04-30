@@ -111,7 +111,8 @@ body {
     &_active {
       background: #F77D4F;
       color: #FFFFFF;
-      border-color: #F77D4F;
+      transform: scale(0.95);
+      border-color: #3F3F3FF1;
     }
 
     &:hover {

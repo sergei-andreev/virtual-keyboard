@@ -5,6 +5,7 @@ import { KEYBOARD_KEYS, SPECIAL_KEYS } from './constants';
 const state = {
   isUpper: false,
   currentLang: localStorage.getItem('lang') || 'en',
+  isMetaLeft: false,
 };
 
 const createEl = (tag, classNames = [], text = '') => {
@@ -30,7 +31,7 @@ const createRow = (row, className) => {
   return $row;
 };
 
-const $root = document.querySelector('#root');
+const $root = document.body;
 
 const $container = createEl('div', ['container']);
 $root.appendChild($container);
@@ -52,6 +53,16 @@ const $fourthRow = createRow(fourthRow, 'keyboard__row_fourth');
 const $fifthRow = createRow(fifthRow, 'keyboard__row_fifth');
 
 $keyboard.append($firstRow, $secondRow, $thirdRow, $fourthRow, $fifthRow);
+
+const switchLang = () => {
+  state.currentLang = state.currentLang === 'en' ? 'ru' : 'en';
+
+  const $keys = document.querySelectorAll('.keyboard__key');
+  $keys.forEach((key) => {
+    const $key = key;
+    $key.textContent = $key.dataset[state.currentLang];
+  });
+};
 
 const changeCase = () => {
   const $keys = document.querySelectorAll('.keyboard__key');
@@ -99,6 +110,9 @@ window.addEventListener('keydown', (e) => {
   e.preventDefault();
 
   const $key = document.querySelector(`[data-code="${e.code}"]`);
+
+  if (!$key) return;
+
   if ($key) $key.classList.add('keyboard__key_active');
 
   if (SPECIAL_KEYS.includes(e.code)) {
@@ -118,6 +132,24 @@ window.addEventListener('keyup', (e) => {
   e.preventDefault();
   const $key = document.querySelector(`[data-code="${e.code}"]`);
   if ($key) $key.classList.remove('keyboard__key_active');
+  if (e.code === 'MetaLeft') {
+    state.isLeftMeta = false;
+  }
+});
+
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'CapsLock' || e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+    state.isUpper = true;
+    changeCase();
+  }
+
+  if (e.code === 'MetaLeft') {
+    state.isLeftMeta = true;
+  }
+
+  if (e.code === 'ShiftLeft' && state.isLeftMeta) {
+    switchLang();
+  }
 });
 
 $keyboard.addEventListener('mousedown', (e) => {
@@ -143,13 +175,6 @@ $keyboard.addEventListener('mouseup', (e) => {
   if (e.target.classList.contains('keyboard__key')) {
     const $key = e.target;
     $key.classList.remove('keyboard__key_active');
-  }
-});
-
-window.addEventListener('keydown', (e) => {
-  if (e.code === 'CapsLock' || e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-    state.isUpper = true;
-    changeCase();
   }
 });
 
