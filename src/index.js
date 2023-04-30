@@ -72,10 +72,52 @@ const changeCase = () => {
   });
 };
 
+const removeCharacters = () => {
+  const start = $textarea.selectionStart;
+  const end = $textarea.selectionEnd;
+
+  if (start === 0 && end === $textarea.value.length) {
+    $textarea.value = '';
+    return;
+  }
+
+  if (start === 0) return;
+
+  if (start === end) {
+    $textarea.value = $textarea.value.slice(0, start - 1) + $textarea.value.slice(end);
+    $textarea.selectionEnd = start - 1;
+    return;
+  }
+
+  $textarea.value = $textarea.value.slice(0, start) + $textarea.value.slice(end);
+  $textarea.selectionEnd = start;
+};
+
+const removeNextCharacters = () => {
+  const start = $textarea.selectionStart;
+  const end = $textarea.selectionEnd;
+
+  if (start === 0 && end === $textarea.value.length) {
+    $textarea.value = '';
+    return;
+  }
+
+  if (end === $textarea.value.length) return;
+
+  if (start === end) {
+    $textarea.value = $textarea.value.slice(0, start) + $textarea.value.slice(end + 1);
+    $textarea.selectionEnd = start;
+    return;
+  }
+
+  $textarea.value = $textarea.value.slice(0, start) + $textarea.value.slice(end);
+  $textarea.selectionEnd = start;
+};
+
 const doSpecialKey = (key) => {
   switch (key.code) {
     case 'Backspace':
-      $textarea.value = $textarea.value.slice(0, -1);
+      removeCharacters();
       break;
     case 'Tab':
       $textarea.value += '    ';
@@ -87,7 +129,7 @@ const doSpecialKey = (key) => {
       $textarea.value += ' ';
       break;
     case 'Delete':
-      $textarea.value = '';
+      removeNextCharacters();
       break;
     case 'ArrowUp':
       $textarea.value += '↑';

@@ -170,7 +170,7 @@ export const KEYBOARD_KEYS = {
       en: 'Shift', ru: 'Shift', code: 'ShiftRight', enShift: 'Shift', ruShift: 'Shift',
     },
     {
-      en: 'Up', ru: 'Up', code: 'ArrowUp', enShift: 'Up', ruShift: 'Up',
+      en: '↑', ru: '↑', code: 'ArrowUp', enShift: 'Up', ruShift: 'Up',
     },
     {
       en: 'Del', ru: 'Del', code: 'Delete', enShift: 'Del', ruShift: 'Del',
@@ -200,13 +200,13 @@ export const KEYBOARD_KEYS = {
       en: 'Ctrl', ru: 'Ctrl', code: 'ControlRight', enShift: 'Ctrl', ruShift: 'Ctrl',
     },
     {
-      en: 'Left', ru: 'Left', code: 'ArrowLeft', enShift: 'Left', ruShift: 'Left',
+      en: '←', ru: '←', code: 'ArrowLeft', enShift: '←', ruShift: '←',
     },
     {
-      en: 'Down', ru: 'Down', code: 'ArrowDown', enShift: 'Down', ruShift: 'Down',
+      en: '↓', ru: '↓', code: 'ArrowDown', enShift: '↓', ruShift: '↓',
     },
     {
-      en: 'Right', ru: 'Right', code: 'ArrowRight', enShift: 'Right', ruShift: 'Right',
+      en: '→', ru: '→', code: 'ArrowRight', enShift: '→', ruShift: '→',
     },
   ],
 };
