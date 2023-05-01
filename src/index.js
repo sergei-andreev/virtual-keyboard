@@ -42,6 +42,10 @@ window.addEventListener('keydown', (e) => {
 
   if ($key) $key.classList.add('keyboard__key_active');
 
+  setTimeout(() => {
+    if ($key && !SPECIAL_KEYS.includes(e.code)) $key.classList.remove('keyboard__key_active');
+  }, 200);
+
   if (SPECIAL_KEYS.includes(e.code)) {
     TextareaInput.doSpecialKey(e);
     return;
@@ -64,11 +68,15 @@ window.addEventListener('keyup', (e) => {
   }
 });
 
-window.addEventListener('keydown', (e) => {
+const handleChangeCase = (e) => {
   if (e.code === 'CapsLock' || e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-    state.isUpper = true;
+    state.isUpper = !state.isUpper;
     changeCase();
   }
+};
+
+window.addEventListener('keydown', (e) => {
+  handleChangeCase(e);
 
   if (e.code === 'MetaLeft') {
     state.isLeftMeta = true;
@@ -77,6 +85,10 @@ window.addEventListener('keydown', (e) => {
   if (e.code === 'ShiftLeft' && state.isLeftMeta) {
     switchLang();
   }
+});
+
+window.addEventListener('keyup', (e) => {
+  handleChangeCase(e);
 });
 
 $keyboard.addEventListener('mousedown', (e) => {
@@ -102,13 +114,6 @@ $keyboard.addEventListener('mouseup', (e) => {
   if (e.target.classList.contains('keyboard__key')) {
     const $key = e.target;
     $key.classList.remove('keyboard__key_active');
-  }
-});
-
-window.addEventListener('keyup', (e) => {
-  if (e.code === 'CapsLock' || e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-    state.isUpper = false;
-    changeCase();
   }
 });
 
