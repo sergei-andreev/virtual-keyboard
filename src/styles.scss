@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+$border-radius: 8px;
+
+body {
+  background: #64A8CF;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.textarea {
+  width: 90%;
+  height: 200px;
+  margin: 20px 0;
+  padding: 10px 15px;
+  border: 1px solid #CCCCCC;
+  border-radius: $border-radius;
+  font-size: 24px;
+  resize: none;
+  font-family: 'Fira Mono', monospace;
+
+  &:focus {
+    outline-color: #64A8CF;
+  }
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #000000;
+  border-radius: $border-radius + 10;
+  width: min-content;
+  border-top: 24px solid #404040;
+  border-bottom: 12px solid #404040;
+  border-left: 12px solid #404040;
+  border-right: 12px solid #404040;
+  gap: 5px;
+  padding: 5px;
+
+  &__row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+
+    &_first {
+      .keyboard__key:last-child {
+        width: 100px;
+      }
+    }
+
+    &_second {
+      .keyboard__key:first-child {
+        width: 100px;
+      }
+    }
+
+    &_third {
+      .keyboard__key:first-child {
+        width: 120px;
+      }
+
+      .keyboard__key:last-child {
+        width: 95px;
+      }
+    }
+
+    &_fourth {
+      .keyboard__key:first-child,
+      .keyboard__key:nth-child(12) {
+        width: 77.5px;
+      }
+    }
+
+    &_fifth {
+      .keyboard__key:nth-child(4) {
+        width: 300px;
+      }
+
+      .keyboard__key:nth-child(3),
+      .keyboard__key:nth-child(5) {
+        width: 75px;
+      }
+    }
+  }
+
+  &__key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #393939;
+    border-radius: $border-radius;
+    font-size: 18px;
+    font-family: 'Fira Mono', monospace;
+    color: #FFFFFF;
+    background: #3F3F3F;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &_active {
+      background: #F77D4F;
+      color: #FFFFFF;
+      transform: scale(0.95);
+      border-color: #3F3F3FF1;
+    }
+
+    &:hover {
+      background: #F77D4F;
+      color: #FFFFFF;
+    }
+
+    &:active {
+      background: #F77D4FE0;
+      color: #FFFFFF;
+      transform: scale(0.95);
+      border-color: #3F3F3FF1;
+    }
+  }
+}
+
+.note {
+  margin-top: 15px;
+  color: #FFFFFF;
+  font-family: 'Fira Mono', monospace;
+}
