@@ -225,8 +225,4 @@ export const SPECIAL_KEYS = [
   'MetaLeft',
   'MetaRight',
   'Delete',
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
 ];
