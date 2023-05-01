@@ -170,7 +170,7 @@ export const KEYBOARD_KEYS = {
       en: 'Shift', ru: 'Shift', code: 'ShiftRight', enShift: 'Shift', ruShift: 'Shift',
     },
     {
-      en: '↑', ru: '↑', code: 'ArrowUp', enShift: 'Up', ruShift: 'Up',
+      en: '↑', ru: '↑', code: 'ArrowUp', enShift: '↑', ruShift: '↑',
     },
     {
       en: 'Del', ru: 'Del', code: 'Delete', enShift: 'Del', ruShift: 'Del',
